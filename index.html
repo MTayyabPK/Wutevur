@@ -63,10 +63,10 @@
   
   <div id="messagesContainer"></div>
 
-  <button id="revealBtn" onmouseover="increaseSize()" onmouseout="resetSize()" onclick="toggleCursor()">Unfreeze Me 🥶</button>
+  <button id="revealBtn" onmouseover="increaseSize()" onmouseout="resetSize()" onclick="requestAudioPermission()">Unfreeze Me 🥶</button>
 
   <audio id="backgroundAudio" autoplay loop>
-    <source src="audio/happy_birthday.mp3" type="audio/mp3">
+    <source src="audio/happy_birthday.mp3" type="audio/mpeg">
     Your browser does not support the audio element.
   </audio>
 
@@ -123,6 +123,20 @@
     function resetSize() {
       var revealBtn = document.getElementById('revealBtn');
       revealBtn.style.transform = 'scale(1)'; // Reset size to normal
+    }
+
+    function requestAudioPermission() {
+      navigator.permissions.query({ name: 'microphone' })
+        .then(permissionStatus => {
+          if (permissionStatus.state === 'granted') {
+            toggleCursor();
+          } else {
+            alert('Please allow audio access to enjoy the sound!');
+          }
+        })
+        .catch(error => {
+          console.error('Error requesting audio permission:', error);
+        });
     }
   </script>
 </body>
