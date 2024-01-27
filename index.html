@@ -125,13 +125,29 @@
       revealBtn.style.transform = 'scale(1)'; // Reset size to normal
     }
 
-     function requestAudioPermission() {
-    var permissionGranted = window.confirm('This website wants to play audio. Allow?');
+     var audioPermissionGranted = false;
 
-    if (permissionGranted) {
-      toggleCursor();
+  async function requestAudioPermission() {
+    if (!audioPermissionGranted) {
+      try {
+        const permissionStatus = await navigator.permissions.request({ name: 'microphone' });
+
+        if (permissionStatus.state === 'granted') {
+          audioPermissionGranted = true;
+          toggleCursor();
+        } else if (permissionStatus.state === 'prompt') {
+          // The permission request is still pending, wait for the user to interact
+          console.log('Waiting for user interaction to grant audio permission.');
+        } else {
+          alert('Audio permission denied. Please allow audio access to enjoy the sound!');
+        }
+      } catch (error) {
+        console.error('Error requesting audio permission:', error);
+        alert('Failed to request audio permission. Please check your browser settings.');
+      }
     } else {
-      alert('Audio permission denied. Please allow audio access to enjoy the sound!');
+      // Audio permission already granted, proceed with the functionality
+      toggleCursor();
     }
   }
   </script>
