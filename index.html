@@ -54,13 +54,6 @@
         padding-top: 20px; /* Add padding to the top */
       }
     }
-    #messagesContainer {
-  display: flex;
-  flex-wrap: wrap; /* Allow messages to wrap to the next line */
-  justify-content: center;
-  align-items: flex-start; /* Align messages to the top of the container */
-  margin-top: 20px; /* Add margin to the top of messagesContainer */
-}
   </style>
 </head>
 <body>
@@ -156,24 +149,30 @@
       revealBtn.style.transform = 'scale(1)'; // Reset size to normal
     }
 
-   var audioPermissionGranted = false;
+    var audioPermissionGranted = false;
 
-  function requestAudioPermission() {
-    if (!audioPermissionGranted) {
-      var permissionGranted = window.confirm('This website wants to play audio. Allow?');
-
-      if (permissionGranted) {
-        audioPermissionGranted = true;
-        toggleCursor();
+    function requestAudioPermission() {
+      if (!audioPermissionGranted) {
+        try {
+          // Create a dummy audio element to check if audio is allowed
+          var audioTest = new Audio();
+          audioTest.play().then(function() {
+            audioTest.pause();
+            audioPermissionGranted = true;
+            toggleCursor();
+          }).catch(function(error) {
+            console.error('Audio permission denied or not supported:', error);
+            alert('Audio permission denied or not supported. Please enable audio to enjoy the sound!');
+          });
+        } catch (error) {
+          console.error('Audio permission check failed:', error);
+          alert('Audio permission check failed. Please enable audio to enjoy the sound!');
+        }
       } else {
-        alert('Audio permission denied. Please allow audio access to enjoy the sound!');
+        // Audio permission already granted, proceed with the functionality
+        toggleCursor();
       }
-    } else {
-      // Audio permission already granted, proceed with the functionality
-      toggleCursor();
     }
-  }
-
   </script>
 </body>
 </html>
