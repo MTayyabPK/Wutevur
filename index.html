@@ -127,6 +127,14 @@
 
      var audioPermissionGranted = false;
 
+  <!-- ... (your existing HTML code) ... -->
+
+<script>
+  // ... (your existing script code) ...
+
+  // Check if permission is already granted from localStorage
+  var audioPermissionGranted = localStorage.getItem('audioPermissionGranted') === 'true';
+
   async function requestAudioPermission() {
     if (!audioPermissionGranted) {
       try {
@@ -134,6 +142,7 @@
 
         if (permissionStatus.state === 'granted') {
           audioPermissionGranted = true;
+          localStorage.setItem('audioPermissionGranted', 'true');
           toggleCursor();
         } else if (permissionStatus.state === 'prompt') {
           // The permission request is still pending, wait for the user to interact
@@ -150,6 +159,7 @@
       toggleCursor();
     }
   }
+
   </script>
 </body>
 </html>
