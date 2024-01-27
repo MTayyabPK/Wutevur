@@ -125,34 +125,17 @@
       revealBtn.style.transform = 'scale(1)'; // Reset size to normal
     }
 
-     var audioPermissionGranted = false;
+   var audioPermissionGranted = false;
 
-  <!-- ... (your existing HTML code) ... -->
-
-<script>
-  // ... (your existing script code) ...
-
-  // Check if permission is already granted from localStorage
-  var audioPermissionGranted = localStorage.getItem('audioPermissionGranted') === 'true';
-
-  async function requestAudioPermission() {
+  function requestAudioPermission() {
     if (!audioPermissionGranted) {
-      try {
-        const permissionStatus = await navigator.permissions.request({ name: 'microphone' });
+      var permissionGranted = window.confirm('This website wants to play audio. Allow?');
 
-        if (permissionStatus.state === 'granted') {
-          audioPermissionGranted = true;
-          localStorage.setItem('audioPermissionGranted', 'true');
-          toggleCursor();
-        } else if (permissionStatus.state === 'prompt') {
-          // The permission request is still pending, wait for the user to interact
-          console.log('Waiting for user interaction to grant audio permission.');
-        } else {
-          alert('Audio permission denied. Please allow audio access to enjoy the sound!');
-        }
-      } catch (error) {
-        console.error('Error requesting audio permission:', error);
-        alert('Failed to request audio permission. Please check your browser settings.');
+      if (permissionGranted) {
+        audioPermissionGranted = true;
+        toggleCursor();
+      } else {
+        alert('Audio permission denied. Please allow audio access to enjoy the sound!');
       }
     } else {
       // Audio permission already granted, proceed with the functionality
