@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy Birthday!</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background: linear-gradient(to left, #eee2f1 0%, rgba(199, 182, 226, 0) 50%, #eee2f1 100%);
+      text-align: center;
+      padding: 50px;
+      cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' fill='black'><text x='0' y='15'>💋</text></svg>") 12 12, auto;
+      color: #a88dab;
+    }
+
+    .message {
+      font-size: 20px;
+      margin: 20px;
+    }
+
+    #revealBtn {
+      background-color: #94bfe9;
+      color: #fff;
+      padding: 10px 20px;
+      font-size: 16px;
+      border: none;
+      outline: none;
+      border-radius: 5px;
+      margin-top: 20px;
+      transition: transform 0.3s ease-out; /* Add a smooth transition effect */
+      cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' fill='black'><text x='0' y='15'>💋</text></svg>") 12 12, auto;
+    }
+
+    #revealBtn.clicked {
+      background-color: #94bfe9;
+      color: #fdd2c5;
+      cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' fill='black'><text x='0' y='15'>💋</text></svg>") 12 12, auto;
+    }
+  </style>
+</head>
+<body>
+  <h1>❤️ Happy Birthday Baby ❤️</h1>
+  
+  <div id="messagesContainer"></div>
+
+  <button id="revealBtn" onmouseover="increaseSize()" onmouseout="resetSize()" onclick="toggleCursor()">Unfreeze Me 🥶</button>
+
+  <script>
+    var messages = [
+      "Wishing you a day filled with joy, laughter, and lots of love! 🥳💖",
+      "You make every day brighter with your presence. Happy birthday! 🌟🎁",
+      "May this year be filled with amazing adventures and beautiful memories. 🎉🎈",
+      "I love you"
+      // Add more messages as needed
+    ];
+
+    var currentMessageIndex = 0;
+    var customCursorSet = false;
+
+    function revealMessage() {
+      var messagesContainer = document.getElementById('messagesContainer');
+      var revealBtn = document.getElementById('revealBtn');
+
+      if (currentMessageIndex < messages.length) {
+        var messageElement = document.createElement('p');
+        messageElement.className = 'message';
+        messageElement.innerHTML = messages[currentMessageIndex];
+        messagesContainer.appendChild(messageElement);
+        currentMessageIndex++;
+
+        if (currentMessageIndex === 1 && !customCursorSet) {
+          revealBtn.classList.add('clicked');
+          customCursorSet = true;
+        }
+
+        revealBtn.innerHTML = '💋';
+      } else {
+        revealBtn.style.backgroundColor = '#f27d42';
+        revealBtn.innerHTML = 'bus🥵';
+        revealBtn.disabled = true;
+      }
+    }
+
+    function toggleCursor() {
+      var revealBtn = document.getElementById('revealBtn');
+      if (!revealBtn.classList.contains('clicked')) {
+        revealBtn.classList.add('clicked');
+        customCursorSet = true;
+      }
+      revealMessage();
+    }
+
+    function increaseSize() {
+      var revealBtn = document.getElementById('revealBtn');
+      revealBtn.style.transform = 'scale(1.1)'; // Increase size by 10%
+    }
+
+    function resetSize() {
+      var revealBtn = document.getElementById('revealBtn');
+      revealBtn.style.transform = 'scale(1)'; // Reset size to normal
+    }
+  </script>
+</body>
+</html>
