@@ -56,12 +56,11 @@
   </div>
   
   <div id="messagesContainer"></div>
-  <button id="revealBtn" onmouseover="increaseSize()" onmouseout="resetSize()" onclick="requestAudioPermission()">Unfreeze Me 🥶</button>
   <audio id="backgroundAudio" loop autoplay muted playsinline>
   <source src="audio/happy_birthday.mp3" type="audio/mpeg">
   Your browser does not support the audio element.
 </audio>
-
+<button id="revealBtn" onmouseover="increaseSize()" onmouseout="resetSize()" onclick="unfreeze()">Unfreeze Me 🥶</button>
   <script>
     var messages = [
   "Hello Rabbit🎉🎈",
@@ -150,7 +149,25 @@
     toggleCursor();
   }
 }
+function unfreeze() {
+    var audio = document.getElementById('backgroundAudio');
+    var revealBtn = document.getElementById('revealBtn');
 
+    if (!audioPermissionGranted) {
+      var permissionGranted = window.confirm('This website wants to play audio. Allow?');
+
+      if (permissionGranted) {
+        audioPermissionGranted = true;
+        revealBtn.classList.add('clicked');
+        revealBtn.innerHTML = '💋';
+        audio.play();
+      } else {
+        alert('Audio permission denied. Please allow audio access to enjoy the sound!');
+      }
+    } else {
+      toggleCursor();
+    }
+  }
   </script>
 </body>
 </html>
