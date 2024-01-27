@@ -126,17 +126,17 @@
     }
 
     function requestAudioPermission() {
-      navigator.permissions.query({ name: 'microphone' })
-        .then(permissionStatus => {
-          if (permissionStatus.state === 'granted') {
-            toggleCursor();
-          } else {
-            alert('Please allow audio access to enjoy the sound!');
-          }
-        })
-        .catch(error => {
-          console.error('Error requesting audio permission:', error);
+      if (window.AudioContext) {
+        var audioContext = new AudioContext();
+        audioContext.resume().then(() => {
+          toggleCursor();
+        }).catch((error) => {
+          console.error('Error resuming audio context:', error);
+          alert('Failed to resume audio context. Please check your browser settings.');
         });
+      } else {
+        alert('Your browser does not support the Web Audio API. Please use a different browser.');
+      }
     }
   </script>
 </body>
