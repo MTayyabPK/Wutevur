@@ -14,6 +14,13 @@
       color: #a88dab;
     }
 
+    #headerContainer {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+
     h1 {
       white-space: nowrap;
     }
@@ -43,14 +50,16 @@
     }
 
     @media (max-width: 600px) {
-      h1 {
-        white-space: nowrap;
+      #headerContainer {
+        padding-top: 20px; /* Add padding to the top */
       }
     }
   </style>
 </head>
 <body>
-  <h1>❤️ Happy Birthday Baby ❤️</h1>
+  <div id="headerContainer">
+    <h1>❤️ Happy Birthday Baby ❤️</h1>
+  </div>
   
   <div id="messagesContainer"></div>
 
@@ -113,3 +122,4 @@
   </script>
 </body>
 </html>
+
