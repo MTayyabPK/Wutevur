@@ -13,23 +13,19 @@
       cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' fill='black'><text x='0' y='15'>💋</text></svg>") 12 12, auto;
       color: #a88dab;
     }
-
     #headerContainer {
       display: flex;
       justify-content: center;
       align-items: center;
       flex-direction: column;
     }
-
     h1 {
       white-space: nowrap;
     }
-
     .message {
       font-size: 20px;
       margin: 20px;
     }
-
     #revealBtn {
       background-color: #94bfe9;
       color: #fff;
@@ -42,13 +38,11 @@
       transition: transform 0.3s ease-out; /* Add a smooth transition effect */
       cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' fill='black'><text x='0' y='15'>💋</text></svg>") 12 12, auto;
     }
-
     #revealBtn.clicked {
       background-color: #94bfe9;
       color: #fdd2c5;
       cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' fill='black'><text x='0' y='15'>💋</text></svg>") 12 12, auto;
     }
-
     @media (max-width: 600px) {
       #headerContainer {
         padding-top: 20px; /* Add padding to the top */
@@ -62,14 +56,11 @@
   </div>
   
   <div id="messagesContainer"></div>
-
   <button id="revealBtn" onmouseover="increaseSize()" onmouseout="resetSize()" onclick="requestAudioPermission()">Unfreeze Me 🥶</button>
-
   <audio id="backgroundAudio" autoplay loop>
     <source src="audio/happy_birthday.mp3" type="audio/mpeg">
     Your browser does not support the audio element.
   </audio>
-
   <script>
     var messages = [
   "Hello Rabbit🎉🎈",
@@ -102,26 +93,21 @@
   "ILYSM❤️"
   // Add more lines as needed
 ];
-
     var currentMessageIndex = 0;
     var customCursorSet = false;
-
     function revealMessage() {
       var messagesContainer = document.getElementById('messagesContainer');
       var revealBtn = document.getElementById('revealBtn');
-
       if (currentMessageIndex < messages.length) {
         var messageElement = document.createElement('p');
         messageElement.className = 'message';
         messageElement.innerHTML = messages[currentMessageIndex];
         messagesContainer.appendChild(messageElement);
         currentMessageIndex++;
-
         if (currentMessageIndex === 1 && !customCursorSet) {
           revealBtn.classList.add('clicked');
           customCursorSet = true;
         }
-
         revealBtn.innerHTML = '💋';
       } else {
         revealBtn.style.backgroundColor = '#f27d42';
@@ -129,7 +115,6 @@
         revealBtn.disabled = true;
       }
     }
-
     function toggleCursor() {
       var revealBtn = document.getElementById('revealBtn');
       if (!revealBtn.classList.contains('clicked')) {
@@ -138,41 +123,29 @@
       }
       revealMessage();
     }
-
     function increaseSize() {
       var revealBtn = document.getElementById('revealBtn');
       revealBtn.style.transform = 'scale(1.1)'; // Increase size by 10%
     }
-
     function resetSize() {
       var revealBtn = document.getElementById('revealBtn');
       revealBtn.style.transform = 'scale(1)'; // Reset size to normal
     }
-
-    var audioPermissionGranted = false;
-
-    function requestAudioPermission() {
-      if (!audioPermissionGranted) {
-        try {
-          // Create a dummy audio element to check if audio is allowed
-          var audioTest = new Audio();
-          audioTest.play().then(function() {
-            audioTest.pause();
-            audioPermissionGranted = true;
-            toggleCursor();
-          }).catch(function(error) {
-            console.error('Audio permission denied or not supported:', error);
-            alert('Audio permission denied or not supported. Please enable audio to enjoy the sound!');
-          });
-        } catch (error) {
-          console.error('Audio permission check failed:', error);
-          alert('Audio permission check failed. Please enable audio to enjoy the sound!');
-        }
-      } else {
-        // Audio permission already granted, proceed with the functionality
+   var audioPermissionGranted = false;
+  function requestAudioPermission() {
+    if (!audioPermissionGranted) {
+      var permissionGranted = window.confirm('This website wants to play audio. Allow?');
+      if (permissionGranted) {
+        audioPermissionGranted = true;
         toggleCursor();
+      } else {
+        alert('Audio permission denied. Please allow audio access to enjoy the sound!');
       }
+    } else {
+      // Audio permission already granted, proceed with the functionality
+      toggleCursor();
     }
+  }
   </script>
 </body>
 </html>
