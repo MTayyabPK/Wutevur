@@ -114,7 +114,11 @@
 
     // Play audio without asking for permission
     var audio = document.getElementById('backgroundAudio');
-    audio.play();
+    
+    // Check if the audio is paused or not playing
+    if (audio.paused) {
+      audio.play();
+    }
   }
 
   function increaseSize() {
