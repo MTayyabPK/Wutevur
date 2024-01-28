@@ -94,78 +94,38 @@
   // Add more lines as needed
 ];
     var currentMessageIndex = 0;
-    var customCursorSet = false;
-    function revealMessage() {
-      var messagesContainer = document.getElementById('messagesContainer');
-      var revealBtn = document.getElementById('revealBtn');
-      if (currentMessageIndex < messages.length) {
-        var messageElement = document.createElement('p');
-        messageElement.className = 'message';
-        messageElement.innerHTML = messages[currentMessageIndex];
-        messagesContainer.appendChild(messageElement);
-        currentMessageIndex++;
-        if (currentMessageIndex === 1 && !customCursorSet) {
-          revealBtn.classList.add('clicked');
-          customCursorSet = true;
-        }
-        revealBtn.innerHTML = '💋';
-      } else {
-        revealBtn.style.backgroundColor = '#f27d42';
-        revealBtn.innerHTML = 'bus🥵';
-        revealBtn.disabled = true;
-      }
-    }
-    function toggleCursor() {
-      var revealBtn = document.getElementById('revealBtn');
-      if (!revealBtn.classList.contains('clicked')) {
-        revealBtn.classList.add('clicked');
-        customCursorSet = true;
-      }
-      revealMessage();
-    }
-    function increaseSize() {
-      var revealBtn = document.getElementById('revealBtn');
-      revealBtn.style.transform = 'scale(1.1)'; // Increase size by 10%
-    }
-    function resetSize() {
-      var revealBtn = document.getElementById('revealBtn');
-      revealBtn.style.transform = 'scale(1)'; // Reset size to normal
-    }
-   var audioPermissionGranted = false;
-  function requestAudioPermission() {
-  if (!audioPermissionGranted) {
-    var permissionGranted = window.confirm('This website wants to play audio. Allow?');
 
-    if (permissionGranted) {
-      audioPermissionGranted = true;
-      var backgroundAudio = document.getElementById('backgroundAudio');
-      backgroundAudio.play(); // Play audio after user interaction
-      toggleCursor();
-    } else {
-      alert('Audio permission denied. Please allow audio access to enjoy the sound!');
-    }
-  } else {
-    // Audio permission already granted, proceed with the functionality
-    toggleCursor();
-  }
-}
-function unfreeze() {
-    var audio = document.getElementById('backgroundAudio');
+  function revealMessage() {
+    var messagesContainer = document.getElementById('messagesContainer');
     var revealBtn = document.getElementById('revealBtn');
-    if (!audioPermissionGranted) {
-      var permissionGranted = window.confirm('This website wants to play audio. Allow?');
-      if (permissionGranted) {
-        audioPermissionGranted = true;
-        revealBtn.classList.add('clicked');
-        revealBtn.innerHTML = '💋';
-        audio.play();
-      } else {
-        alert('Audio permission denied. Please allow audio access to enjoy the sound!');
-      }
+    
+    if (currentMessageIndex < messages.length) {
+      var messageElement = document.createElement('p');
+      messageElement.className = 'message';
+      messageElement.innerHTML = messages[currentMessageIndex];
+      messagesContainer.appendChild(messageElement);
+      currentMessageIndex++;
+      revealBtn.innerHTML = '💋';
     } else {
-      toggleCursor();
+      revealBtn.style.backgroundColor = '#f27d42';
+      revealBtn.innerHTML = 'bus🥵';
+      revealBtn.disabled = true;
     }
+
+    // Play audio without asking for permission
+    var audio = document.getElementById('backgroundAudio');
+    audio.play();
   }
-  </script>
+
+  function increaseSize() {
+    var revealBtn = document.getElementById('revealBtn');
+    revealBtn.style.transform = 'scale(1.1)';
+  }
+
+  function resetSize() {
+    var revealBtn = document.getElementById('revealBtn');
+    revealBtn.style.transform = 'scale(1)';
+  }
+</script>
 </body>
 </html>
