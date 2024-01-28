@@ -57,10 +57,10 @@
   
   <div id="messagesContainer"></div>
   <audio id="backgroundAudio" loop muted playsinline>
-  <source src="audio/happy_birthday.mp3" type="audio/mpeg">
-  Your browser does not support the audio element.
-</audio>
-<button id="revealBtn" onclick="initiatePlayback()">Unfreeze Me 🥶</button>
+    <source src="audio/happy_birthday.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+  <button id="revealBtn" onclick="initiatePlayback()">Unfreeze Me 🥶</button>
   <script>
     var messages = [
   "Hello Rabbit🎉🎈",
@@ -94,54 +94,57 @@
   // Add more lines as needed
 ];
     var isAudioPlayed = false;
-
-  function initiatePlayback() {
-    var revealBtn = document.getElementById('revealBtn');
-    var messagesContainer = document.getElementById('messagesContainer');
-
-    // Play audio without asking for permission only if it hasn't been played yet
-    if (!isAudioPlayed) {
-      var audio = document.getElementById('backgroundAudio');
-      audio.play();
-      isAudioPlayed = true;
-    }
     var currentMessageIndex = 0;
 
-  function revealMessage() {
-    var messagesContainer = document.getElementById('messagesContainer');
-    var revealBtn = document.getElementById('revealBtn');
-    
-    if (currentMessageIndex < messages.length) {
-      var messageElement = document.createElement('p');
-      messageElement.className = 'message';
-      messageElement.innerHTML = messages[currentMessageIndex];
-      messagesContainer.appendChild(messageElement);
-      currentMessageIndex++;
-      revealBtn.innerHTML = '💋';
-    } else {
-      revealBtn.style.backgroundColor = '#f27d42';
-      revealBtn.innerHTML = 'bus🥵';
-      revealBtn.disabled = true;
+    function initiatePlayback() {
+      var revealBtn = document.getElementById('revealBtn');
+      var messagesContainer = document.getElementById('messagesContainer');
+
+      // Play audio without asking for permission only if it hasn't been played yet
+      if (!isAudioPlayed) {
+        var audio = document.getElementById('backgroundAudio');
+        audio.play();
+        isAudioPlayed = true;
+      }
+
+      revealMessage();
     }
 
-    // Play audio without asking for permission
-    var audio = document.getElementById('backgroundAudio');
-    
-    // Check if the audio is paused or not playing
-    if (audio.paused) {
-      audio.play();
+    function revealMessage() {
+      var messagesContainer = document.getElementById('messagesContainer');
+      var revealBtn = document.getElementById('revealBtn');
+
+      if (currentMessageIndex < messages.length) {
+        var messageElement = document.createElement('p');
+        messageElement.className = 'message';
+        messageElement.innerHTML = messages[currentMessageIndex];
+        messagesContainer.appendChild(messageElement);
+        currentMessageIndex++;
+        revealBtn.innerHTML = '💋';
+      } else {
+        revealBtn.style.backgroundColor = '#f27d42';
+        revealBtn.innerHTML = 'bus🥵';
+        revealBtn.disabled = true;
+      }
+
+      // Play audio without asking for permission
+      var audio = document.getElementById('backgroundAudio');
+
+      // Check if the audio is paused or not playing
+      if (audio.paused) {
+        audio.play();
+      }
     }
-  }
 
-  function increaseSize() {
-    var revealBtn = document.getElementById('revealBtn');
-    revealBtn.style.transform = 'scale(1.1)';
-  }
+    function increaseSize() {
+      var revealBtn = document.getElementById('revealBtn');
+      revealBtn.style.transform = 'scale(1.1)';
+    }
 
-  function resetSize() {
-    var revealBtn = document.getElementById('revealBtn');
-    revealBtn.style.transform = 'scale(1)';
-  }
-</script>
+    function resetSize() {
+      var revealBtn = document.getElementById('revealBtn');
+      revealBtn.style.transform = 'scale(1)';
+    }
+  </script>
 </body>
 </html>
