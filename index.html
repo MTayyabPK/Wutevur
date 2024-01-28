@@ -61,7 +61,6 @@
   Your browser does not support the audio element.
 </audio>
   <button id="revealBtn" onclick="initiatePlayback()" onmouseover="increaseSize()" onmouseout="resetSize()">Unfreeze Me 🥶</button>
-  <button id="revealBtn" onclick="initiatePlayback()">Unfreeze Me 🥶</button>
   <script>
     var messages = [
   "Hello Rabbit🎉🎈",
@@ -95,20 +94,21 @@
   // Add more lines as needed
 ];
     var isAudioPlayed = false;
-  var currentMessageIndex = 0;
+    var currentMessageIndex = 0;
 
-  function initiatePlayback() {
-    var revealBtn = document.getElementById('revealBtn');
-    var messagesContainer = document.getElementById('messagesContainer');
+    function initiatePlayback() {
+      var revealBtn = document.getElementById('revealBtn');
+      var messagesContainer = document.getElementById('messagesContainer');
 
-    if (!isAudioPlayed) {
-      var audio = document.getElementById('backgroundAudio');
-      audio.play();
-      isAudioPlayed = true;
+      // Play audio without asking for permission only if it hasn't been played yet
+      if (!isAudioPlayed) {
+        var audio = document.getElementById('backgroundAudio');
+        audio.play();
+        isAudioPlayed = true;
+      }
+
+      revealMessage();
     }
-
-    revealMessage();
-  }
 
     function revealMessage() {
       var messagesContainer = document.getElementById('messagesContainer');
