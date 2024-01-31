@@ -65,19 +65,30 @@
 
     <script>
         function validateLogin() {
-            var enteredUsername = document.getElementById('username').value;
-            var enteredPassword = document.getElementById('password').value;
+    var enteredUsername = document.getElementById('username').value;
+    var enteredPassword = document.getElementById('password').value;
 
-            // Replace 'your_username' and 'your_password' with your desired credentials
-            var correctUsername = 'your_username';
-            var correctPassword = 'your_password';
+    var correctUsername = 'your_username';
+    var correctHashedPassword = hashPassword('your_password');
 
-            if (enteredUsername === correctUsername && enteredPassword === correctPassword) {
-                window.location.href = 'main.html'; // Redirect to the main page
-            } else {
-                alert('Invalid username or password. Please try again.');
-            }
-        }
+    if (enteredUsername === correctUsername && hashPassword(enteredPassword) === correctHashedPassword) {
+        sessionStorage.setItem('authenticated', 'true');
+        window.location.href = 'main.html'; // Redirect to the main page
+    } else {
+        alert('Invalid username or password. Please try again.');
+    }
+}
+
+function hashPassword(password) {
+    // Implement a secure password hashing algorithm (e.g., SHA-256)
+    // This is a simplified example and may not be suitable for production
+    var hash = CryptoJS.SHA256(password).toString(CryptoJS.enc.Hex);
+    return hash;
+}
+// Check if the user is already authenticated (for a smoother user experience)
+if (sessionStorage.getItem('authenticated') === 'true') {
+    window.location.href = 'main.html';
+}
     </script>
 </body>
 </html>
