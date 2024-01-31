@@ -5,7 +5,50 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login Page</title>
     <style>
-        body{font-family:Arial,sans-serif;background-color:#f4f4f4;margin:0;display:flex;justify-content:center;align-items:center;height:100vh}#loginContainer{background-color:#fff;padding:20px;border-radius:8px;box-shadow:0 0 10px rgba(0,0,0,.1);width:300px;text-align:center}label{display:block;margin-bottom:10px;font-weight:bold}input{width:100%;padding:8px;margin-bottom:15px;box-sizing:border-box}button{background-color:#4caf50;color:#fff;padding:10px 15px;border:none;border-radius:4px;cursor:pointer}button:hover{background-color:#45a049}
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        #loginContainer {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            text-align: center;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 15px;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #4caf50;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
     </style>
 </head>
 <body>
@@ -21,38 +64,27 @@
     </div>
 
     <script>
-        function _0x1b3f(_0x140c8d, _0x32b9c4) {
-            return _0x140c8d === _0x32b9c4;
-        }
-
-        function _0x2e2487(_0x40e71c, _0x1833ed) {
-            return _0x40e71c === _0x1833ed;
-        }
-
         function validateLogin() {
-            var _0x15cdec = document[_0x2e2487('getElemen' + 'tById')]('username')[_0x1b3f('value')];
-            var _0x4fe18d = document[_0x2e2487('getElemen' + 'tById')]('password')['value'];
+            var username = document.getElementById('username').value;
+            var password = document.getElementById('password').value;
 
-            var _0x2755e2 = '\x61\x6d\x61\x6e';
-            var _0x4fe7c0 = _0x1f7b3c('\x69\x6c\x79');
+            // Replace 'aman' and 'ily' with your desired username and password
+            var storedUsername = 'aman';
+            var storedPassword = 'ily';
 
-            if (_0x1b3f(_0x15cdec, _0x2755e2) && _0x1b3f(_0x4c6a7a(_0x4fe18d), _0x4fe7c0)) {
-                console[_0x2e2487('\x6c\x6f\x67')]('\x4c\x6f\x67\x69\x6e\x20\x73\x75\x63\x63\x65\x73\x73\x66\x75\x6c');
-                sessionStorage.setItem(_0x2e2487('\x61\x75\x74\x68\x65\x6e\x74\x69\x63\x61' + '\x74\x65\x64'), '\x74\x72\x75\x65');
-                window.location.href = _0x1b3f('\x6d\x61\x69\x6e\x2e\x68\x74\x6d\x6c');
+            if (username === storedUsername && password === storedPassword) {
+                console.log('Login successful');
+                sessionStorage.setItem('authenticated', 'true');
+                window.location.href = 'main.html';
             } else {
-                console[_0x2e2487('\x6c\x6f\x67')]('\x4c\x6f\x67\x69\x6e\x20\x66\x61\x69\x6c\x65\x64');
-                alert(_0x2e2487('\x49\x6e\x76\x61\x6c\x69\x64\x20\x75\x73' + '\x65\x72\x6e\x61\x6d\x65\x20\x6f\x72\x20\x70\x61' + '\x73\x73\x77\x6f\x72\x64\x2e\x20\x50\x6c\x65\x61' + '\x73\x65\x20\x74\x72\x79\x20\x61\x67\x61\x69\x6e\x2e'));
+                console.log('Login failed');
+                alert('Invalid username or password. Please try again.');
             }
         }
 
-        function _0x4c6a7a(_0x4fe7c0) {
-            var _0x2f04e5 = CryptoJS[_0x1b3f('53\x48\x41\x32\x35\x36')][_0x2e2487('42\x28\x70\x61\x73\x73\x77\x6f\x72\x64')]( _0x4fe7c0)[_0x1b3f('\x74\x6f\x53\x74\x72\x69\x6e\x67')](CryptoJS[_0x2e2487('\x65\x6e\x63\x68')][_0x2e2487('\x48\x65\x78')]);
-            return _0x2f04e5;
-        }
-
-        if (sessionStorage.getItem(_0x2e2487('\x61\x75\x74\x68\x65\x6e\x74\x69\x63\x61' + '\x74\x65\x64')) === _0x1b3f('\x74\x72\x75\x65')) {
-            window.location.href = _0x2e2487('\x6d\x61\x69\x6e\x2e\x68\x74\x6d\x6c');
+        // Check if the user is already authenticated for a smoother user experience
+        if (sessionStorage.getItem('authenticated') === 'true') {
+            window.location.href = 'main.html';
         }
     </script>
 </body>
