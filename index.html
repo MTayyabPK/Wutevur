@@ -68,16 +68,19 @@
     var enteredUsername = document.getElementById('username').value;
     var enteredPassword = document.getElementById('password').value;
 
-    var correctUsername = 'your_username';
-    var correctHashedPassword = hashPassword('your_password');
+    var correctUsername = 'user';
+    var correctHashedPassword = hashPassword('pass');
 
     if (enteredUsername === correctUsername && hashPassword(enteredPassword) === correctHashedPassword) {
+        console.log('Login successful'); // Avoid logging the password
         sessionStorage.setItem('authenticated', 'true');
         window.location.href = 'main.html'; // Redirect to the main page
     } else {
+        console.log('Login failed'); // Avoid logging the password
         alert('Invalid username or password. Please try again.');
     }
 }
+
 
 function hashPassword(password) {
     // Implement a secure password hashing algorithm (e.g., SHA-256)
