@@ -96,6 +96,13 @@
   "ILYSM❤️"
   // Add more lines as needed
 ];
+    // Check if the user is authenticated
+    var isAuthenticated = sessionStorage.getItem('authenticated') === 'true';
+
+    if (!isAuthenticated) {
+        alert('Unauthorized access. Please log in.');
+        window.location.href = 'index.html';
+    }
     var isAudioPlayed = false;
     var currentMessageIndex = 0;
 
