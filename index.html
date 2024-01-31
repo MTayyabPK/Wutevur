@@ -64,34 +64,41 @@
     </div>
 
     <script>
-        function validateLogin() {
-    var enteredUsername = document.getElementById('username').value;
-    var enteredPassword = document.getElementById('password').value;
+       function _0x1b3f(_0x140c8d, _0x32b9c4) {
+    return _0x140c8d === _0x32b9c4;
+}
 
-    var correctUsername = 'user';
-    var correctHashedPassword = hashPassword('pass');
+function _0x2e2487(_0x40e71c, _0x1833ed) {
+    return _0x40e71c === _0x1833ed;
+}
 
-    if (enteredUsername === correctUsername && hashPassword(enteredPassword) === correctHashedPassword) {
-        console.log('Login successful'); // Avoid logging the password
-        sessionStorage.setItem('authenticated', 'true');
-        window.location.href = 'main.html'; // Redirect to the main page
+function _0x4c7968() {
+    var _0x15cdec = document[_0x2e2487('getElemen' + 'tById')]('username')[_0x1b3f('value')];
+    var _0x4fe18d = document[_0x2e2487('getElemen' + 'tById')]('password')['value'];
+
+    var _0x2755e2 = '\x61\x6d\x61\x6e';
+    var _0x4fe7c0 = _0x1f7b3c('\x69\x6c\x79');
+
+    if (_0x1b3f(_0x15cdec, _0x2755e2) && _0x1b3f(_0x4c6a7a(_0x4fe18d), _0x4fe7c0)) {
+        console[_0x2e2487('\x6c\x6f\x67')]('\x4c\x6f\x67\x69\x6e\x20\x73\x75\x63\x63\x65\x73\x73\x66\x75\x6c');
+        sessionStorage[_0x2e2487('\x73\x65\x74\x49\x74\x65\x6d')](_0x2e2487('\x61\x75\x74\x68\x65\x6e\x74\x69\x63\x61' + '\x74\x65\x64'), '\x74\x72\x75\x65');
+        window[_0x1b3f('\x6c\x6f\x63\x61\x74\x69\x6f\x6e')[_0x2e2487('href')] = _0x1b3f('\x6d\x61\x69\x6e\x2e\x68\x74\x6d\x6c');
     } else {
-        console.log('Login failed'); // Avoid logging the password
-        alert('Invalid username or password. Please try again.');
+        console[_0x2e2487('\x6c\x6f\x67')]('\x4c\x6f\x67\x69\x6e\x20\x66\x61\x69\x6c\x65\x64');
+        alert(_0x2e2487('\x49\x6e\x76\x61\x6c\x69\x64\x20\x75\x73' + '\x65\x72\x6e\x61\x6d\x65\x20\x6f\x72\x20\x70\x61' + '\x73\x73\x77\x6f\x72\x64\x2e\x20\x50\x6c\x65\x61' + '\x73\x65\x20\x74\x72\x79\x20\x61\x67\x61\x69\x6e\x2e'));
     }
 }
 
+function _0x4c6a7a(_0x4fe7c0) {
+    var _0x2f04e5 = CryptoJS[_0x1b3f('53\x48\x41\x32\x35\x36')][_0x2e2487('42\x28\x70\x61\x73\x73\x77\x6f\x72\x64')]( _0x4fe7c0)[_0x1b3f('\x74\x6f\x53\x74\x72\x69\x6e\x67')](CryptoJS[_0x2e2487('\x65\x6e\x63\x68')][_0x2e2487('\x48\x65\x78')]);
+    return _0x2f04e5;
+}
 
-function hashPassword(password) {
-    // Implement a secure password hashing algorithm (e.g., SHA-256)
-    // This is a simplified example and may not be suitable for production
-    var hash = CryptoJS.SHA256(password).toString(CryptoJS.enc.Hex);
-    return hash;
-}
 // Check if the user is already authenticated (for a smoother user experience)
-if (sessionStorage.getItem('authenticated') === 'true') {
-    window.location.href = 'main.html';
+if (sessionStorage[_0x1b3f('67\x65\x74\x49\x74\x65\x6d')](_0x2e2487('\x61\x75\x74\x68\x65\x6e\x74\x69\x63\x61' + '\x74\x65\x64')) === _0x1b3f('\x74\x72\x75\x65')) {
+    window[_0x2e2487('\x6c\x6f\x63\x61\x74\x69\x6f\x6e')[_0x1b3f('href')] = _0x2e2487('\x6d\x61\x69\x6e\x2e\x68\x74\x6d\x6c');
 }
+
     </script>
 </body>
 </html>
