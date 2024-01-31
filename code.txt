@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy Birthday!</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Love+Ya+Like+A+Sister&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Love Ya Like A Sister', cursive;
+      background: linear-gradient(to left, #eee2f1 0%, rgba(199, 182, 226, 0) 50%, #eee2f1 100%);
+      text-align: center;
+      padding: 50px;
+      cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' fill='black'><text x='0' y='15'>💋</text></svg>") 12 12, auto;
+      color: #a88dab;
+    }
+    #headerContainer {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+    h1 {
+      white-space: nowrap;
+    }
+    .message {
+      font-size: 20px;
+      margin: 20px;
+    }
+    #revealBtn {
+      background-color: #94bfe9;
+      color: #fff;
+      padding: 10px 20px;
+      font-size: 16px;
+      border: none;
+      outline: none;
+      border-radius: 5px;
+      margin-top: 20px;
+      transition: transform 0.3s ease-out; /* Add a smooth transition effect */
+      cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' fill='black'><text x='0' y='15'>💋</text></svg>") 12 12, auto;
+    }
+    #revealBtn.clicked {
+      background-color: #94bfe9;
+      color: #fdd2c5;
+      cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' fill='black'><text x='0' y='15'>💋</text></svg>") 12 12, auto;
+    }
+    @media (max-width: 600px) {
+      #headerContainer {
+        padding-top: 20px; /* Add padding to the top */
+      }
+    }
+  </style>
+</head>
+<body>
+  <div id="headerContainer">
+    <h1>❤️ Happy Birthday Baby ❤️</h1>
+  </div>
+  
+  <div id="messagesContainer"></div>
+  <audio id="backgroundAudio" loop playsinline>
+  <source src="audio/happy_birthday.mp3" type="audio/mpeg">
+  Your browser does not support the audio element.
+</audio>
+  <button id="revealBtn" onclick="initiatePlayback()" onmouseover="increaseSize()" onmouseout="resetSize()">Unfreeze Me 🥶</button>
+  <script>
+    var messages = [
+  "Hello Rabbit🎉🎈",
+  "Ily❤️",
+  "Umm kia keho...🤔",
+  "Baby",
+  "Babbyy",
+  "Baat suno naww",
+  "💋💋💋💋",
+  "Yk u got the best smile😊",
+  "Hairs are sexy too💁",
+  "Ndd ur golo golo eyes are so 😍 MA",
+  "U are ♾️/10",
+  "So it has been 19 months since we met❤️",
+  "I love giving surprises to u yk. Having my bby's 2nd bday is so very special to me.🎉🎂",
+  "With u I have discovered the real meaning of love.❤️",
+  "Life is tough but with u I become tougher than life💪",
+  "If anyone asks me what's the best part of my life, I will just say that I am living in it right now with u❤️",
+  "Everyday when we talk it's kind of a blessing💜",
+  "U are a therapy to all my problems🕊️",
+  "Baby u r so graceful💃",
+  "So intelligent🧠",
+  "Nd most importantly u have such a pure heart which keeps even me on track❤️",
+  "Han roasting bhi ker laiti thodi bht😂",
+  "Acha so my hands will always be holding ur hands and fear nothing cuz we got each other💜",
+  "Happy birthday My sweetheart🥳💖",
+  "This year IA will bring happiness and the best things into ur life and with every year it will be getting doubled.🌟",
+  "May Allah make our bond even stronger with time🤲",
+  "Bye. My cute lil frogie❤️🐸",
+  "ILYSM❤️"
+  // Add more lines as needed
+];
+    // Check if the user is authenticated
+    var isAuthenticated = sessionStorage.getItem('authenticated') === 'true';
+
+    if (!isAuthenticated) {
+        alert('Unauthorized access. Please log in.');
+        window.location.href = 'index.html';
+    }
+    var isAudioPlayed = false;
+    var currentMessageIndex = 0;
+
+    function initiatePlayback() {
+      var revealBtn = document.getElementById('revealBtn');
+      var messagesContainer = document.getElementById('messagesContainer');
+
+      // Play audio without asking for permission only if it hasn't been played yet
+      if (!isAudioPlayed) {
+        var audio = document.getElementById('backgroundAudio');
+        audio.play();
+        isAudioPlayed = true;
+      }
+
+      revealMessage();
+    }
+
+    function revealMessage() {
+      var messagesContainer = document.getElementById('messagesContainer');
+      var revealBtn = document.getElementById('revealBtn');
+
+      if (currentMessageIndex < messages.length) {
+        var messageElement = document.createElement('p');
+        messageElement.className = 'message';
+        messageElement.innerHTML = messages[currentMessageIndex];
+        messagesContainer.appendChild(messageElement);
+        currentMessageIndex++;
+        revealBtn.innerHTML = '💋';
+      } else {
+        revealBtn.style.backgroundColor = '#f27d42';
+        revealBtn.innerHTML = 'bus🥵';
+        revealBtn.disabled = true;
+      }
+
+      // Play audio without asking for permission
+      var audio = document.getElementById('backgroundAudio');
+
+      // Check if the audio is paused or not playing
+      if (audio.paused) {
+        audio.play();
+      }
+    }
+
+    function increaseSize() {
+      var revealBtn = document.getElementById('revealBtn');
+      revealBtn.style.transform = 'scale(1.1)';
+    }
+
+    function resetSize() {
+      var revealBtn = document.getElementById('revealBtn');
+      revealBtn.style.transform = 'scale(1)';
+    }
+  </script>
+</body>
+</html>
